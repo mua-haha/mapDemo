@@ -27,6 +27,7 @@
 			<select id='province10'></select>
 			<select id='city10'></select>
 			<select id='district10'></select>
+			<input id="latAndlng" type="text" />
 		</div>
 		<div id="allmap"></div>
 	</body>
@@ -37,10 +38,17 @@
 	var map = new BMap.Map("allmap");
 	map.centerAndZoom(new BMap.Point(116.403765, 39.914850), 5);
 	map.enableScrollWheelZoom();
+	map.setDefaultCursor("Default"); 
 
 	//单击获取点击的经纬度
 	map.addEventListener("click", function(e) {
-		alert(e.point.lat + "," + e.point.lng);
+		var str = e.point.lat + "," + e.point.lng;
+		$("#latAndlng").val(str);
+		$("#latAndlng").select(); //选择对象   
+		tag = document.execCommand("Copy"); //执行浏览器复制命令  
+		if(tag) {
+			alert('复制内容成功：'+str);
+		}
 	});
 	$("#target").distpicker({
 		autoSelect: false
