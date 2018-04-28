@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-		<div data-toggle="distpicker">
+		<div data-toggle="distpicker" id="target">
 			<select id='province10'></select>
 			<select id='city10'></select>
 			<select id='district10'></select>
@@ -37,12 +37,15 @@
 	var map = new BMap.Map("allmap");
 	map.centerAndZoom(new BMap.Point(116.403765, 39.914850), 5);
 	map.enableScrollWheelZoom();
-	
+
 	//单击获取点击的经纬度
-	map.addEventListener("click",function(e){
+	map.addEventListener("click", function(e) {
 		alert(e.point.lat + "," + e.point.lng);
 	});
-	
+	$("#target").distpicker({
+		autoSelect: false
+	});
+
 	function getBoundary(name) {
 		var bdary = new BMap.Boundary();
 		bdary.get(name, function(rs) { //获取行政区域
